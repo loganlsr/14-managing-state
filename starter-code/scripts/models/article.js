@@ -123,7 +123,7 @@
 
   Article.numWordsAll = function() {
     return Article.all.map(function(article) {
-      return article.body.match(/\b\w+/g).length;
+      return article.body.match(/\w+/g).length;
     })
     .reduce(function(a, b) {
       return a + b;
@@ -138,7 +138,7 @@
           return a.author === author;
         })
         .map(function(a) {
-          return a.body.match(/\b\w+/g).length;
+          return a.body.match(/\w+/g).length;
         })
         .reduce(function(a, b) {
           return a + b;

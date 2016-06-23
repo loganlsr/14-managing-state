@@ -14,7 +14,6 @@ Work with your partner to *comment* on the execution path for sections labeled w
  - The "Read On" link is now a standard html link.
  - The filters now populate based on what's in the DB, not what's in the DOM: "single source of truth"
  - If there are spaces in a URL, we have replaced them with a '+'
- - This regular expression will match all whitespace in a string: `/\W+/g`
 
 ## Technical Requirements and Grading Rubric
  - Accurately comment on each COMMENT item to demonstrate your understanding of the functionality and the execution path.

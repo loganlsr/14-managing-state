@@ -127,7 +127,6 @@
     });
 
     articleView.populateFilters();
-    // COMMENT: What does this method do?  What is it's execution path?
     articleView.handleFilters();
 
     // DONE: Replace setTeasers with just the truncation logic, if needed:
