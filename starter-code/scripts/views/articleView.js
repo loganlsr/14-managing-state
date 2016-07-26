@@ -17,7 +17,7 @@
     var options,
       template = Handlebars.compile($('#option-template').text());
 
-    // Example of using model method with FP, synchronous approach:
+    // Example of using model method with functional programming, synchronous approach:
     // This method is dependant on info being in the DOM. Only authors of shown articles are loaded.
     options = Article.allAuthors().map(function(author) { return template({val: author}); });
     if ($('#author-filter option').length < 2) { // Prevent duplication
@@ -40,7 +40,7 @@
   // COMMENT: What does this method do?  What is it's execution path?
   articleView.handleFilters = function() {
     $('#filters').one('change', 'select', function() {
-      resource = this.id.replace('-filter', '');
+      var resource = this.id.replace('-filter', '');
       page('/' + resource + '/' + $(this).val().replace(/\W+/g, '+')); // Replace any/all whitespace with a +
     });
   };

@@ -1,13 +1,14 @@
 (function(module) {
   var articlesController = {};
 
-  Article.createTable();  // Ensure the database table is properly initialized
+  Article.createTable();
 
   articlesController.index = function(ctx, next) {
     articleView.index(ctx.articles);
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  // This method loads by the id
   articlesController.loadById = function(ctx, next) {
     var articleData = function(article) {
       ctx.articles = article;
@@ -24,7 +25,9 @@
       next();
     };
 
-    Article.findWhere('author', ctx.params.authorName.replace('+', ' '), authorData);
+    Article.findWhere(
+      'author', ctx.params.authorName.replace('+', ' '), authorData
+    );
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
