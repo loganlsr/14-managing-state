@@ -12,17 +12,17 @@
     return template(article);
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+  // COMMENT: DONE What does this method do?  What is it's execution path?
+  //This method declares two variables: options is empty and template is a compiled handlebars template(which is a function).
+  //From there options is populated by Article.allAuthors, which will return an array of the authors in the Articles.all array, then a map is applied to it that compiles the authors into the handlebars template.  That data is then appended to the DOM if it meets the condidtions of the if statement (the length of what's there is less than 2 authors).  The Article.alLCategories method is different, it makes a call directly to the database instead of scraping the displayed page.  It also appends to the DOM if the previous length is less than 2.
   articleView.populateFilters = function() {
-    var options,
-      template = Handlebars.compile($('#option-template').text());
-
-    // Example of using model method with functional programming, synchronous approach:
-    // This method is dependant on info being in the DOM. Only authors of shown articles are loaded.
+    var options, template = Handlebars.compile($('#option-template').text());
     options = Article.allAuthors().map(function(author) { return template({val: author}); });
     if ($('#author-filter option').length < 2) { // Prevent duplication
       $('#author-filter').append(options);
     };
+    // Example of using model method with functional programming, synchronous approach:
+    // This method is dependant on info being in the DOM. Only authors of shown articles are loaded.
 
     // Example of using model method with async, SQL-based approach:
     // This approach is DOM-independent, since it reads from the DB directly.
@@ -37,7 +37,8 @@
     });
   };
 
-  // COMMENT: What does this method do?  What is it's execution path?
+  // COMMENT: DONE What does this method do?  What is it's execution path?
+  //This function attaches an event handler to the #filters element that will execute at most once per element per event type.  It's going to concat the filter ID and send us to the URI for what was clicked on, for example the category-filter was boats, it's going to now have the category in resource, and boats as this.val() so the URI would be /category/boats.
   articleView.handleFilters = function() {
     $('#filters').one('change', 'select', function() {
       var resource = this.id.replace('-filter', '');
@@ -118,6 +119,11 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  // The first part of this method shows all of the #articles element while hiding its siblings.
+  // The next part removes the content of the #articles element.
+  // Then from the articles array it appends the articles back to the DOM.
+  // Then it populates both the filters.
+  // Finally it sets the teasers.
   articleView.index = function(articles) {
     $('#articles').show().siblings().hide();
 
